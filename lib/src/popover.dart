@@ -102,13 +102,14 @@ Future<T?> showPopover<T extends Object?>({
   String? barrierLabel,
   PopoverTransitionBuilder? popoverTransitionBuilder,
   Key? key,
+  bool rootNavigator = true
 }) {
   constraints = (width != null || height != null)
       ? constraints?.tighten(width: width, height: height) ??
           BoxConstraints.tightFor(width: width, height: height)
       : constraints;
 
-  return Navigator.of(context, rootNavigator: true).push<T>(
+  return Navigator.of(context, rootNavigator: rootNavigator).push<T>(
     RawDialogRoute<T>(
       pageBuilder: (_, animation, __) {
         return WillPopScope(
